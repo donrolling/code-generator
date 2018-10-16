@@ -1,6 +1,5 @@
 ﻿using Business.Common;
 using Business.Conversion;
-using Ionic.Zip;
 using Model.Application;
 using System.Collections.Generic;
 using System.IO;
@@ -12,26 +11,26 @@ namespace Business.Services {
 		private RazorTemplateRenderer RazorTemplateRenderer = new RazorTemplateRenderer();
 		private List<string> ignoreDeleteExtensions = new List<string> { ".bat", ".ps1" };
 
-		public byte[] Output(EntityViewModel entity, List<Template> templates, List<string> selectedTemplates, string pathToTemplates) {
-			var dict = new Dictionary<string, string>();
-			var runOnceTemplates = new List<string>();
-			traverseTemplatesAndEntities(dict, runOnceTemplates, new List<EntityViewModel> { entity }, templates, selectedTemplates, pathToTemplates);
-			return zip(dict);
-		}
+		//public byte[] Output(EntityViewModel entity, List<Template> templates, List<string> selectedTemplates, string pathToTemplates) {
+		//	var dict = new Dictionary<string, string>();
+		//	var runOnceTemplates = new List<string>();
+		//	traverseTemplatesAndEntities(dict, runOnceTemplates, new List<EntityViewModel> { entity }, templates, selectedTemplates, pathToTemplates);
+		//	return zip(dict);
+		//}
 
-		public byte[] Output(List<EntityViewModel> entities, List<Template> templates, List<string> selectedTemplates, string pathToTemplates) {
-			var dict = new Dictionary<string, string>();
-			var runOnceTemplates = new List<string>();
-			traverseTemplatesAndEntities(dict, runOnceTemplates, entities, templates, selectedTemplates, pathToTemplates);
-			return zip(dict);
-		}
+		//public byte[] Output(List<EntityViewModel> entities, List<Template> templates, List<string> selectedTemplates, string pathToTemplates) {
+		//	var dict = new Dictionary<string, string>();
+		//	var runOnceTemplates = new List<string>();
+		//	traverseTemplatesAndEntities(dict, runOnceTemplates, entities, templates, selectedTemplates, pathToTemplates);
+		//	return zip(dict);
+		//}
 
-		public void OutputToFile(List<EntityViewModel> entities, List<Template> templates, List<string> selectedTemplates, string pathToTemplates, string outputFilename) {
-			var dict = new Dictionary<string, string>();
-			var runOnceTemplates = new List<string>();
-			traverseTemplatesAndEntities(dict, runOnceTemplates, entities, templates, selectedTemplates, pathToTemplates);
-			zip(dict, outputFilename);
-		}
+		//public void OutputToFile(List<EntityViewModel> entities, List<Template> templates, List<string> selectedTemplates, string pathToTemplates, string outputFilename) {
+		//	var dict = new Dictionary<string, string>();
+		//	var runOnceTemplates = new List<string>();
+		//	traverseTemplatesAndEntities(dict, runOnceTemplates, entities, templates, selectedTemplates, pathToTemplates);
+		//	zip(dict, outputFilename);
+		//}
 
 		public void OutputToFiles(List<EntityViewModel> entities, List<Template> templates, List<string> selectedTemplates, string pathToTemplates, string outputPath) {
 			cleanDir(new DirectoryInfo(outputPath));
@@ -93,17 +92,17 @@ namespace Business.Services {
 			}
 		}
 
-		public byte[] OutputEntitiesAsBytes(List<EntityViewModel> entities) {
-			var dict = new Dictionary<string, string>();
-			prepareEntities(dict, entities);
-			return zip(dict);
-		}
+		//public byte[] OutputEntitiesAsBytes(List<EntityViewModel> entities) {
+		//	var dict = new Dictionary<string, string>();
+		//	prepareEntities(dict, entities);
+		//	return zip(dict);
+		//}
 
-		public void OutputEntitiesToFile(List<EntityViewModel> entities, string outputFilename) {
-			var dict = new Dictionary<string, string>();
-			prepareEntities(dict, entities);
-			zip(dict, outputFilename);
-		}
+		//public void OutputEntitiesToFile(List<EntityViewModel> entities, string outputFilename) {
+		//	var dict = new Dictionary<string, string>();
+		//	prepareEntities(dict, entities);
+		//	zip(dict, outputFilename);
+		//}
 
 		private void prepareEntities(Dictionary<string, string> dict, List<EntityViewModel> entities) {
 			foreach (var entity in entities) {
@@ -129,33 +128,8 @@ namespace Business.Services {
 			foreach (var item in dict) {
 				FileUtility.WriteFile<OutputProviderService>(item.Key, outputPath, item.Value);
 			}
-		}
-
-		private void zip(Dictionary<string, string> dict, string outputFilename) {
-			using (var memoryStream = new FileStream(outputFilename, FileMode.Create)) {
-				using (var zipOutputStream = new ZipOutputStream(memoryStream)) {
-					foreach (var item in dict) {
-						zipOutputStream.PutNextEntry(item.Key);
-						byte[] buffer = Encoding.ASCII.GetBytes(item.Value);
-						zipOutputStream.Write(buffer, 0, buffer.Length);
-					}
-				}
-			}
-		}
-
-		private byte[] zip(Dictionary<string, string> dict) {
-			using (var memoryStream = new MemoryStream()) {
-				using (var zipOutputStream = new ZipOutputStream(memoryStream)) {
-					foreach (var item in dict) {
-						zipOutputStream.PutNextEntry(item.Key);
-						byte[] buffer = Encoding.ASCII.GetBytes(item.Value);
-						zipOutputStream.Write(buffer, 0, buffer.Length);
-					}
-				}
-				return memoryStream.ToArray();
-			}
-		}
-
+		}		
+		
 		private void setupTemplates(List<Template> templates, List<string> selectedTemplates, List<string> runOnceTemplates, string pathToTemplates) {
 			foreach (var template in templates.Where(a => selectedTemplates.Contains(a.Name))) {
 				var path = string.Concat(pathToTemplates, template.Location);

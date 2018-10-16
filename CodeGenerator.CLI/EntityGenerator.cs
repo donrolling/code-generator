@@ -22,10 +22,6 @@ namespace CodeGenerator.CLI {
 			if (string.IsNullOrEmpty(Config.OutputDirectory)) {
 				return Result.Error("Output Directory was empty.");
 			}
-			//just correcting a simple potential configuration oversight
-			if (Config.OutputToFile && !string.IsNullOrEmpty(Config.OutputFilename) && !Config.OutputFilename.Contains(".zip")) {
-				Config.OutputFilename = Config.OutputFilename + ".zip";
-			}
 			if (!Config.Templates.Any()) {
 				return Result.Error("No templates to process.");
 			}
@@ -47,11 +43,7 @@ namespace CodeGenerator.CLI {
 			}
 
 			var outputProviderService = new OutputProviderService();
-			if (Config.OutputToFile) {
-				outputProviderService.OutputEntitiesToFile(entities, Config.OutputFilename);
-			} else {
-				outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), "\\Templates", Config.OutputDirectory);
-			}
+			outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), "\\Templates", Config.OutputDirectory);
 			foreach (var script in Config.PostProcessScripts) {
 				Ronz.PowerShell.PowerShellUtils.RunScriptFile($"Scripts\\{ script }");
 			}
@@ -100,29 +92,29 @@ namespace CodeGenerator.CLI {
 			FileUtility.WriteFile<EntityGenerator>(outputFilename, "", sb.ToString());
 		}
 
-		public void GenerateEntitiesAndSaveToFile(string connectionString, string outputFilename) {
-			if (!outputFilename.Contains(".zip")) {
-				outputFilename = outputFilename + ".zip";
-			}
-			var entitiesGenerationResult = GenerateEntities(connectionString);
-			if (entitiesGenerationResult.Failure) {
-				return;
-			}
-			var entities = entitiesGenerationResult.Result;
-			var outputProviderService = new OutputProviderService();
-			outputProviderService.OutputEntitiesToFile(entities, outputFilename);
-		}
+		//public void GenerateEntitiesAndSaveToFile(string connectionString, string outputFilename) {
+		//	if (!outputFilename.Contains(".zip")) {
+		//		outputFilename = outputFilename + ".zip";
+		//	}
+		//	var entitiesGenerationResult = GenerateEntities(connectionString);
+		//	if (entitiesGenerationResult.Failure) {
+		//		return;
+		//	}
+		//	var entities = entitiesGenerationResult.Result;
+		//	var outputProviderService = new OutputProviderService();
+		//	outputProviderService.OutputEntitiesToFile(entities, outputFilename);
+		//}
 
-		public void GenerateOutput(List<EntityViewModel> entities, TemplateConfiguration templateConfiguration, string templateLocation, string outputFilename) {
-			if (!outputFilename.Contains(".zip")) {
-				outputFilename = outputFilename + ".zip";
-			}
+		//public void GenerateOutput(List<EntityViewModel> entities, TemplateConfiguration templateConfiguration, string templateLocation, string outputFilename) {
+		//	if (!outputFilename.Contains(".zip")) {
+		//		outputFilename = outputFilename + ".zip";
+		//	}
 
-			var selectedTemplates = templateConfiguration.Templates.Select(a => a.Name).ToList();
-			var outputLocation = FileUtility.GetFullPath<EntityGenerator>("Output");
-			var outputProviderService = new OutputProviderService();
-			outputProviderService.OutputToFile(entities, templateConfiguration.Templates, selectedTemplates, templateLocation, outputLocation + outputFilename);
-		}
+		//	var selectedTemplates = templateConfiguration.Templates.Select(a => a.Name).ToList();
+		//	var outputLocation = FileUtility.GetFullPath<EntityGenerator>("Output");
+		//	var outputProviderService = new OutputProviderService();
+		//	outputProviderService.OutputToFile(entities, templateConfiguration.Templates, selectedTemplates, templateLocation, outputLocation + outputFilename);
+		//}
 
 		private List<EntityViewModel> filterEntities(List<EntityViewModel> entities) {
 			if (Config.IncludeTheseTablesOnly.Any()) {

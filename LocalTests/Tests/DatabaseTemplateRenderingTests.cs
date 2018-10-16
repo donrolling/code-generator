@@ -66,13 +66,13 @@ namespace LocalTests.Tests {
 			this.OutputProviderService.OutputToFiles(entities, this.TemplateConfiguration.Templates, _templates, _templateLocation, _outputLocation);
 		}
 
-		[TestMethod]
-		[TestCategory("Database")]
-		public void Render_All_Templates_ToZip_GivenDatabase() {
-			var fileName = "Render_All_Templates_ToZip_" + DateTime.Now.Ticks.ToString() + ".zip";
-			var output = $"{ _outputLocation }Output/{ fileName }";
-			this.OutputProviderService.OutputToFile(_entities, this.TemplateConfiguration.Templates, _templates, _templateLocation, output);
-		}
+		//[TestMethod]
+		//[TestCategory("Database")]
+		//public void Render_All_Templates_ToZip_GivenDatabase() {
+		//	var fileName = "Render_All_Templates_ToZip_" + DateTime.Now.Ticks.ToString() + ".zip";
+		//	var output = $"{ _outputLocation }Output/{ fileName }";
+		//	this.OutputProviderService.OutputToFile(_entities, this.TemplateConfiguration.Templates, _templates, _templateLocation, output);
+		//}
 
 		[TestMethod]
 		[TestCategory("Database")]

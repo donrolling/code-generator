@@ -1,8 +1,6 @@
 {
 	"ConnectionString": "Data Source=971JT039H2\\DROLLING;Initial Catalog=Identity;Integrated Security=SSPI;",
 	"ProcessTemplateStubs": true,
-	"OutputToFile": false,
-	"OutputFilename": "",
 	"OutputDirectory": "Output",
 	"IncludeTheseTablesOnly": [],
 	"IncludeTheseTemplatesOnly": [],
