@@ -3,11 +3,31 @@ using Business.Conversion;
 using Model.Application;
 using RazorEngine;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Business.Services {
 	public class RazorTemplateRenderer {
+
+		public void Cleanup() {
+			var tempPath = Path.GetTempPath();
+			var missedDelete = new List<DirectoryInfo>();
+			foreach (var directory in Directory.GetDirectories(tempPath, "RazorEngine_*")) {
+				var dir = new DirectoryInfo(directory);
+				try {
+					cleanDir(dir);
+				} catch {
+					missedDelete.Add(dir);
+				}
+			}
+			foreach (var missed in missedDelete) {
+				try {
+					cleanDir(missed);
+				} catch {}
+			}
+		}
 
 		//todo: this should be a Test helper method, not part of the service
 		public T GetEntity<T>(string fileName, string subDirectory) where T : class {
@@ -35,6 +55,17 @@ namespace Business.Services {
 			} catch (Exception ex) {
 				return $"Error in Template: { templateName }\r\n{ ex.Message }";
 			}
+		}
+
+		private void cleanDir(DirectoryInfo folder) {
+			var files = folder.GetFiles();
+			foreach (var file in files) {
+				file.Delete();
+			}
+			foreach (var subFolder in folder.GetDirectories()) {
+				cleanDir(subFolder);
+			}
+			folder.Delete();
 		}
 	}
 }

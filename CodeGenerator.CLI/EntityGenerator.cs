@@ -4,6 +4,7 @@ using Business.Services;
 using Model.Application;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -45,21 +46,10 @@ namespace CodeGenerator.CLI {
 			var outputProviderService = new OutputProviderService();
 			var pathToTemplates = FileUtility.GetFullPath<EntityGenerator>("\\Templates");
 			outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), pathToTemplates, Config.OutputDirectory);
-			//var hasScriptErrors = false;
-			//var scriptErrors = string.Empty;
-			//foreach (var script in Config.PostProcessScripts) {
-			//	var pathToScript = FileUtility.GetFullPath<EntityGenerator>($"\\Scripts\\{ script }");
-			//	var scriptText = FileUtility.ReadTextFile(pathToScript);
-			//	try {
-			//		Ronz.PowerShell.PowerShellUtils.RunScript(scriptText);
-			//	} catch (Exception ex) {
-			//		hasScriptErrors = true;
-			//		scriptErrors += ex.Message;
-			//	}
-			//}
-			//if (hasScriptErrors) {
-			//	return Result.Error(scriptErrors);
-			//}
+
+			//cleanup files that the razor engine made
+			new RazorTemplateRenderer().Cleanup();
+
 			return Result.Ok();
 		}
 

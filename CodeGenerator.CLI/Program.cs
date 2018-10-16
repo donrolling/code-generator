@@ -2,6 +2,7 @@
 using Business.Conversion;
 using Model.Application;
 using System;
+using System.Threading;
 
 namespace CodeGenerator.CLI {
 	public class Program {
@@ -29,6 +30,7 @@ namespace CodeGenerator.CLI {
 					Console.WriteLine("Goodbye");
 				}
 			}
+			Thread.Sleep(10000);
 		}
 
 		private static TemplateConfiguration readConfig() {
