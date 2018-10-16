@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CDDFD47B-870F-48CE-AC46-6354C010CBB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LocalTests</RootNamespace>
+    <AssemblyName>LocalTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\packages\valueinjecter.3.1.1.3\lib\net40\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\DatabaseTemplateRenderingTests.cs" />
+    <Compile Include="Tests\JsonTests.cs" />
+    <Compile Include="Tests\StringConversionTests.cs" />
+    <Compile Include="Tests\TemplateRenderingTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business.Common\Business.Common.csproj">
+      <Project>{700465bf-50ce-4c2e-ac92-d9aaf1e417f3}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{79611c50-3140-43f2-b06c-92fee39fc4a3}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGenerator.CLI\CodeGenerator.CLI.csproj">
+      <Project>{2bd25dba-dde7-4ca6-9b1f-a77d84bd25ec}</Project>
+      <Name>CodeGenerator.CLI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a0e70849-6e47-4d27-8c37-5a7c3f99e7be}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Configurations\BasicConfiguration.json" />
+    <Content Include="Configurations\GeneratedConfiguration.json" />
+    <Content Include="Configurations\MainConfiguration.json" />
+    <Content Include="Configurations\ChildConfiguration.json" />
+    <None Include="Data\ActivityFeedStatus.json" />
+    <None Include="Data\Contact1.json" />
+    <None Include="Data\Entities.json" />
+    <None Include="Data\MonitorActivities.json" />
+    <None Include="Data\WallComments.json" />
+    <None Include="Data\WallFacebookUsers.json" />
+    <None Include="Data\WallPosts.json" />
+    <None Include="Data\Walls.json" />
+    <None Include="Data\WallUserPermissions.json" />
+    <None Include="Output\Inquiry.DataMart.UpdateProject-Dev11.ps1" />
+    <None Include="Output\Inquiry.UpdateProject-Dev11.ps1" />
+    <None Include="Output\runSQL.ps1" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\Inquiry\Model\Model.txt" />
+    <Content Include="Templates\Inquiry\Procedure\Delete.txt" />
+    <Content Include="Templates\Inquiry\Procedure\DropProcs.txt" />
+    <Content Include="Templates\Inquiry\Procedure\Insert.txt" />
+    <Content Include="Templates\Inquiry\Procedure\Update.txt" />
+    <Content Include="Templates\Inquiry\Repository\BaseRepository.txt" />
+    <Content Include="Templates\Inquiry\Repository\DapperRepositoryBase.txt" />
+    <Content Include="Templates\Inquiry\Repository\ReadAllFunction.txt" />
+    <Content Include="Templates\Inquiry\Repository\Repository.txt" />
+    <Content Include="Templates\Inquiry\Repository\RepositoryBaseInterface.txt" />
+    <Content Include="Templates\Inquiry\Repository\RepositoryInterface.txt" />
+    <Content Include="Templates\Inquiry\Repository\SelectByIdFunction.txt" />
+    <Content Include="Templates\Inquiry\Service\BaseService.txt" />
+    <Content Include="Templates\Inquiry\Service\Service.txt" />
+    <Content Include="Templates\Inquiry\Service\ServiceInterface.txt" />
+    <Content Include="Templates\Inquiry\Setup\Startup.txt" />
+    <Content Include="Templates\Inquiry\TableValuedFunction\ReadAll.txt" />
+    <Content Include="Templates\Inquiry\TableValuedFunction\SelectById.txt" />
+    <Content Include="Templates\Inquiry\Tests\IntegrationTest.txt" />
+    <Content Include="Templates\NewTemplates\Controller\Controller.txt" />
+    <Content Include="Templates\NewTemplates\Model\Model.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\DropProcs.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\Delete.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\Insert.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\Update.txt" />
+    <Content Include="Templates\NewTemplates\Repository\DapperRepositoryBase.txt" />
+    <Content Include="Templates\NewTemplates\Repository\ReadAllFunction.txt" />
+    <Content Include="Templates\NewTemplates\Repository\BaseRepository.txt" />
+    <Content Include="Templates\NewTemplates\Repository\SelectByIdFunction.txt" />
+    <Content Include="Templates\NewTemplates\Repository\Repository.txt" />
+    <Content Include="Templates\NewTemplates\Repository\RepositoryBaseInterface.txt" />
+    <Content Include="Templates\NewTemplates\Repository\RepositoryInterface.txt" />
+    <Content Include="Templates\NewTemplates\Service\BaseService.txt" />
+    <Content Include="Templates\NewTemplates\Service\Service.txt" />
+    <Content Include="Templates\NewTemplates\Service\ServiceInterface.txt" />
+    <Content Include="Templates\NewTemplates\Setup\Autofac.txt" />
+    <Content Include="Templates\NewTemplates\TableValuedFunction\ReadAll.txt" />
+    <Content Include="Templates\NewTemplates\TableValuedFunction\SelectById.txt" />
+    <Content Include="Templates\NewTemplates\Tests\IntegrationTest.txt" />
+    <Content Include="Templates\NewTemplates\View\Edit.txt" />
+    <Content Include="Templates\NewTemplates\View\Create.txt" />
+    <Content Include="Templates\NewTemplates\View\Index.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

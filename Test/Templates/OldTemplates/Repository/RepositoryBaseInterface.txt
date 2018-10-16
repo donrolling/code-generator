@@ -1,0 +1,8 @@
+﻿[[Imports]]
+
+namespace [[Namespace]] {
+	public interface IRepository {
+		T Get<T>(long id, string schema = null) where T : class;
+		TransactionResponse Execute(string sql, dynamic param);
+	}
+}

@@ -1,0 +1,2 @@
+﻿CREATE Function [[[Schema]]].[[[TableName]]_SelectOne] (@id bigint) AS
+	return select top 1 * from [[TableName]] where Id = @id

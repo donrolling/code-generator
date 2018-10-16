@@ -1,0 +1,27 @@
+﻿[[Imports]]
+
+namespace [[Namespace]] {
+	public class Dapper[[UpperModelName]]Repository : DapperRepository, I[[UpperModelName]]Repository {	
+		public Dapper[[UpperModelName]]Repository(string connectionString) : base(connectionString) { }
+		
+		public TransactionResponse Create([[UpperModelName]] [[LowerModelName]]) {
+			var sql = "Execute [[[Schema]]].[[[UpperModelName]]_Insert] [[CSV_Insert_Properties]] @Id = @Id OUTPUT";
+			var _params = new DynamicParameters();
+			[[CSV_Insert_Properties_DynamicParams]]
+			_params.Add("Id", dbType: DbType.Int64, direction: ParameterDirection.Output);
+
+			var result = base.Execute(sql, _params);
+			return result;
+		}
+
+		public TransactionResponse Update([[UpperModelName]] [[LowerModelName]]) {
+			var sql = "Execute [[[Schema]]].[[[UpperModelName]]_Update] [[CSV_Update_Properties]]";
+			return base.Execute(sql, [[LowerModelName]]);
+		}
+
+		public TransactionResponse Delete([[PrimaryKeyDataType]] id) {
+			var sql = "Execute [[[Schema]]].[[[UpperModelName]]_Delete] @Id";
+			return base.Execute(sql, new { Id = id });
+		}
+	}
+}

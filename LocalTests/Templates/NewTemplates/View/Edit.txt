@@ -1,0 +1,46 @@
+﻿@@model <s>@Model.Namespace</s>.<s>@Model.Name.Value</s>
+@@{
+    ViewBag.Title = "@Model.Name.Value";
+}
+<h2>@Model.Name.Value</h2>
+@@using (Html.BeginForm()){
+    @@Html.AntiForgeryToken()
+    @@Html.ValidationSummary(true)
+	
+	@@Html.HiddenFor(a => a.Id) 
+
+@foreach(var p in Model.Properties){
+if(@p.DataType == "bool" && @p.Name.Value != "IsActive"){
+	<div class="form-group">
+		@@Html.CheckboxFor(a => a.<s>@p.Name.Value</s>) 
+		<label>@p.Name.NameWithSpaces</label>	
+	</div>	
+} else if(@p.DataType == "DateTime" && @p.Name.Value != "CreatedDate" && @p.Name.Value != "UpdatedDate") {
+	<div class="form-group">
+		<label>@p.Name.NameWithSpaces</label>
+		@@Html.TextBoxFor(a => a.<s>@p.Name.Value</s>, new { @@class = "Date" }) 
+		@@Html.ValidationMessageFor(a => a.<s>@p.Name.Value</s>) 	
+	</div>
+} else if(@p.DataType == "string") {
+	<div class="form-group">
+		<label>@p.Name.NameWithSpaces</label>
+		@@Html.EditorFor(a => a.<s>@p.Name.Value</s>) 
+		@@Html.ValidationMessageFor(a => a.<s>@p.Name.Value</s>) 	
+	</div>	
+} else if("long,int,Guid".Contains(@p.DataType) && @p.PrimaryKey == false && @p.Name.Value != "CreatedById" && @p.Name.Value != "UpdatedById") {
+	<div class="form-group">
+		<label>@p.Name.NameWithSpaces</label>
+		@@Html.EditorFor(a => a.<s>@p.Name.Value</s>) 
+		@@Html.ValidationMessageFor(a => a.<s>@p.Name.Value</s>) 	
+	</div>	
+} else if( @p.Name.Value == "CreatedDate" || @p.Name.Value == "UpdatedDate") {
+	<div class="form-group">
+		<label>@p.Name.NameWithSpaces</label>
+		@@Html.DisplayFor(a => a.<s>@p.Name.Value</s>, new { @@class = "AuditInfo" })
+	</div>
+}
+}
+	<div class="form-group">
+		<input type="submit" value="Save" class="btn btn-default" />
+	</div>
+}

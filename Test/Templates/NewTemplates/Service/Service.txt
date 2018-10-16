@@ -1,0 +1,28 @@
+﻿@foreach(var i in Model.Imports){
+<s>using @i;</s>
+}
+
+namespace @Model.Namespace {
+	<s>public class @Model.Name</s><s>Service : I<s>@Model.Name</s>Service {</s>
+		public I<s>@Model.Name</s>Repository <s>@Model.Name</s>Repository { get; set; }
+
+		public <s>@Model.Name</s>Service(I<s>@Model.Name</s>Repository <s>@Model.NameLowerCamelCase</s>Repository) {
+			this.<s>@Model.Name</s>Repository = <s>@Model.NameLowerCamelCase</s>Repository;
+		}
+
+		public TransactionResponse Create(<s>@Model.Name</s> <s>@Model.NameLowerCamelCase</s>){
+			var result = this.<s>@Model.Name</s>Repository.Create(<s>@Model.NameLowerCamelCase</s>);
+			return result;
+		}
+
+		public TransactionResponse Update(<s>@Model.Name</s> <s>@Model.NameLowerCamelCase</s>){
+			var result = this.<s>@Model.Name</s>Repository.Update(<s>@Model.NameLowerCamelCase</s>);
+			return result;
+		}
+
+		public TransactionResponse Delete(<s>@Model.KeyDataType</s> <s>@Model.KeyNameLowerCamelCase</s>){
+			var result = this.<s>@Model.Name</s>Repository.Delete(<s>@Model.KeyNameLowerCamelCase)</s>;
+			return result;
+		}
+	}
+}

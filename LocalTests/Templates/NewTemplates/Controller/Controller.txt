@@ -1,0 +1,72 @@
+﻿using Common;
+using Common.Configuration;
+using Business.Models;
+using Business.Service.Interfaces;
+using Business.ServiceInterfaces;
+using Data.Models.Entities;
+using Data.Models.Enum;
+using System.Web.Mvc;
+using Website.App.Controllers;
+using Website.App.FilterAttributes;
+
+namespace @Model.Namespace {
+    public class <s>@Model.Name.Value</s>Controller : MembershipController {
+        public I<s>@Model.Name.Value</s>Service <s>@Model.Name.Value</s>Service { get; private set; }
+
+        public <s>@Model.Name.Value</s>Controller(I<s>@Model.Name.Value</s>Service <s>@Model.Name.LowerCamelCase</s>Service, IMembershipService membershipService, ILogger logger) : base(membershipService, logger) {
+            this.<s>@Model.Name.Value</s>Service = <s>@Model.Name.LowerCamelCase</s>Service;
+        }
+		@if(Model.Keys.Count == 1) {
+		<s>
+        public ActionResult Index() {
+            return View();
+        }
+
+        public ActionResult GetList() {
+            return this.<s>@Model.Name.Value</s>Service.GetList(new PageInfo(HttpContextFactory.Current));
+        }
+
+        public ActionResult Create() {
+            var viewModel = this.<s>@Model.Name.Value</s>Service.GetEditViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(<s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>) {
+            var isvalid = ModelState.IsValid;
+            if (!isvalid) {
+                var viewModel = this.<s>@Model.Name.Value</s>Service.GetEditViewModel(<s>@Model.Name.LowerCamelCase</s>);
+                return View(viewModel);
+            }
+            var saveResult = this.<s>@Model.Name.Value</s>Service.Create(<s>@Model.Name.LowerCamelCase</s>);
+            if (!saveResult.Success) {
+                ModelState.AddModelError(string.Empty, saveResult.ErrorMessage);
+                var viewModel = this.<s>@Model.Name.Value</s>Service.GetEditViewModel(<s>@Model.Name.LowerCamelCase</s>);
+                return View(viewModel);
+            }
+            return RedirectToAction("Edit", new { id = saveResult.Id });
+        }
+
+        public ActionResult Edit(long id) {
+            var viewModel = this.<s>@Model.Name.Value</s>Service.GetEditViewModel(id);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(<s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>) {
+            var isvalid = ModelState.IsValid;
+            if (!isvalid) {
+                var viewModel = this.<s>@Model.Name.Value</s>Service.GetEditViewModel(<s>@Model.Name.LowerCamelCase</s>);
+                return View(viewModel);
+            }
+            var saveResult = this.<s>@Model.Name.Value</s>Service.Save(<s>@Model.Name.LowerCamelCase</s>);
+            if (!saveResult.Success) {
+                ModelState.AddModelError(string.Empty, saveResult.ErrorMessage);
+                var viewModel = this.<s>@Model.Name.Value</s>Service.GetEditViewModel(<s>@Model.Name.LowerCamelCase</s>);
+                return View(viewModel);
+            }
+            return View();
+        }</s>
+        }
+    }
+}

@@ -1,0 +1,10 @@
+﻿CREATE Function [[[Schema]]].[[[TableName]]_ReadAll] (@readActive bit, @readInactive bit) AS
+	if @readActive = 1 and @readInactive = 1 begin
+		return select * from [[TableName]]
+	end
+	else if @readActive = 1 and @readInactive = 0 begin
+		return select * from [[TableName]] where IsActive = 1
+	end
+	else if @readActive = 0 and @readInactive = 1 begin
+		return select * from [[TableName]] where IsActive = 0
+	end

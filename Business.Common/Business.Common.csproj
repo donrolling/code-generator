@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{700465BF-50CE-4C2E-AC92-D9AAF1E417F3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Business.Common</RootNamespace>
+    <AssemblyName>Business.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Auditing.cs" />
+    <Compile Include="Common\Conversion.cs" />
+    <Compile Include="Common\CryptConverter.cs" />
+    <Compile Include="Common\EnumHelp.cs" />
+    <Compile Include="Common\EnumNameDescriptionValue.cs" />
+    <Compile Include="Common\Excel_Conversion.cs" />
+    <Compile Include="Common\FileUtility.cs" />
+    <Compile Include="Common\HtmlScrubber.cs" />
+    <Compile Include="Common\JSON_Parser.cs" />
+    <Compile Include="Common\StringConversion.cs" />
+    <Compile Include="Common\WebCommunicator.cs" />
+    <Compile Include="Common\XML_Conversion.cs" />
+    <Compile Include="DataTables\DataSet.cs" />
+    <Compile Include="DataTables\DataTable.cs" />
+    <Compile Include="DataTables\Interfaces\IDataTable.cs" />
+    <Compile Include="DataTables\PageInfo.cs" />
+    <Compile Include="DataTables\PagingHelper.cs" />
+    <Compile Include="DataTables\SearchFilter.cs" />
+    <Compile Include="DataTables\SortExtensions.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Errors\ErrorHandling.cs" />
+    <Compile Include="Extensions\HttpExtensions.cs" />
+    <Compile Include="Common\SelectListHelper.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Configuration\Enums.cs" />
+    <Compile Include="Configuration\FakeObjects\FakeHttpContext.cs" />
+    <Compile Include="Configuration\FakeObjects\FakeHttpRequest.cs" />
+    <Compile Include="Configuration\FakeObjects\FakeHttpSessionState.cs" />
+    <Compile Include="Configuration\FakeObjects\FakeIdentity.cs" />
+    <Compile Include="Configuration\FakeObjects\FakePrinciple.cs" />
+    <Compile Include="Configuration\HttpContextFactory.cs" />
+    <Compile Include="DatesAndTimes\TimeHelper.cs" />
+    <Compile Include="DatesAndTimes\UTC_Formatter.cs" />
+    <Compile Include="Errors\Exceptions.cs" />
+    <Compile Include="Linq\Compare.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Common\IServiceBase.cs" />
+    <Compile Include="Logging\IRepositoryLogger.cs" />
+    <Compile Include="Logging\Log4NetLogger.cs" />
+    <Compile Include="Extensions\StringFormatting.cs" />
+    <Compile Include="Extensions\DataAnnotationsValidations.cs" />
+    <Compile Include="Logging\LogSeverity.cs" />
+    <Compile Include="Logging\MachineInfo.cs" />
+    <Compile Include="Logging\RepositoryLogger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\ActionType.cs" />
+    <Compile Include="Responses\Envelope.cs" />
+    <Compile Include="Responses\Result.cs" />
+    <Compile Include="Responses\TransactionResponse.cs" />
+    <Compile Include="Results\ProcessResult.cs" />
+    <Compile Include="Common\ServiceBase.cs" />
+    <Compile Include="Statuses\AccessFailureReason.cs" />
+    <Compile Include="Statuses\LoginStatus.cs" />
+    <Compile Include="Statuses\SaveStatus.cs" />
+    <Compile Include="Statuses\SignInStatus.cs" />
+    <Compile Include="Validation\RegExConstants.cs" />
+    <Compile Include="Validation\ValidationErrorMessages.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

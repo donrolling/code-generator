@@ -1,0 +1,2 @@
+﻿CREATE Function [@Model.Schema].[<s>@Model.Name</s>_SelectById] (@@<s>@Model.KeyNameLowerCamelCase</s> <s>@Model.KeyDataType</s>) RETURNS TABLE AS
+	return select top 1 * from [<s>@Model.Name</s>] where @Model.KeyName = @@<s>@Model.KeyNameLowerCamelCase</s>

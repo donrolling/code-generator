@@ -1,0 +1,7 @@
+﻿[[Imports]]
+
+namespace [[Namespace]] {    
+	public class [[UpperModelName]] { [[Properties]]
+		public const string DatabaseSchema = "[[DatabaseSchema]]";
+	}
+}

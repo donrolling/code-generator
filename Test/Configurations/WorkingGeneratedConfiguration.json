@@ -1,0 +1,329 @@
+{
+  "Templates": [
+	{
+		"Type": "Repository",
+		"Name": "ReadAllFunction",
+		"Namespace": "Data.Repository.FunctionDefinitions",
+		"Location": "\\Templates\\NewTemplates\\Repository\\ReadAllFunction.txt",
+		"OutputFilename": "{0}_ReadAll_Function.cs",
+		"RelativeOutputPath": "FunctionDefinitions",
+		"Language": "csharp",
+		"RunOnce": false,
+		"Imports": [
+			"System",
+			"System.Collections.Generic",
+			"System.ComponentModel.DataAnnotations"
+		],
+		"Symbols": [ ],
+		"AuxilaryTemplates": [ ]
+	},
+	{
+		"Type": "Repository",
+		"Name": "SelectByIdFunction",
+		"Namespace": "Data.Repository.FunctionDefinitions",
+		"Location": "\\Templates\\NewTemplates\\Repository\\SelectByIdFunction.txt",
+		"OutputFilename": "{0}_SelectById_Function.cs",
+		"RelativeOutputPath": "FunctionDefinitions",
+		"Language": "csharp",
+		"RunOnce": false,
+		"Imports": [
+			"System",
+			"System.Collections.Generic",
+			"System.ComponentModel.DataAnnotations"
+		],
+		"Symbols": [ ],
+		"AuxilaryTemplates": [ ]
+	},
+	{
+      "Type": "Model",
+      "Name": "Model",
+      "Namespace": "Project.Models",
+      "Location": "\\Templates\\NewTemplates\\Model\\Model.txt",
+      "OutputFilename": "{0}.cs",
+      "RelativeOutputPath": "Model",
+      "Language": "csharp",
+      "RunOnce": false,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "System.ComponentModel.DataAnnotations"
+      ],
+      "Symbols": [],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Table",
+      "Name": "Table",
+      "Namespace": "Table",
+      "Location": "\\Templates\\NewTemplates\\Table\\Table.txt",
+      "OutputFilename": "{0}.sql",
+      "RelativeOutputPath": "Table",
+      "Language": "sql",
+      "RunOnce": false,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "System.ComponentModel.DataAnnotations"
+      ],
+      "Symbols": [],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Procedure",
+      "Name": "Delete",
+      "Namespace": "Procedure",
+      "Schema": "ProjectSchema",
+      "Location": "\\Templates\\NewTemplates\\Procedure\\Delete.txt",
+      "OutputFilename": "{0}_Delete.sql",
+      "RelativeOutputPath": "Procedure",
+      "Language": "sql",
+      "RunOnce": false,
+      "Imports": [],
+      "Symbols": [
+        "[[Schema]]",
+        "[[TableName]]",
+        "[[PrimaryKeyName]]",
+        "[[PrimaryKeyDataType]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Procedure",
+      "Name": "Insert",
+      "Namespace": "Procedure",
+      "Schema": "ProjectSchema",
+      "Location": "\\Templates\\NewTemplates\\Procedure\\Insert.txt",
+      "OutputFilename": "{0}_Insert.sql",
+      "RelativeOutputPath": "Procedure",
+      "Language": "sql",
+      "RunOnce": false,
+      "Imports": [],
+      "Symbols": [
+        "[[Schema]]",
+        "[[TableName]]",
+        "[[Parameters]]",
+        "[[Fields]]",
+        "[[Values]]",
+        "[[PrimaryKeyName]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Procedure",
+      "Name": "Update",
+      "Namespace": "Procedure",
+      "Schema": "ProjectSchema",
+      "Location": "\\Templates\\NewTemplates\\Procedure\\Update.txt",
+      "OutputFilename": "{0}_Update.sql",
+      "RelativeOutputPath": "Procedure",
+      "Language": "sql",
+      "RunOnce": false,
+      "Imports": [],
+      "Symbols": [
+        "[[Schema]]",
+        "[[TableName]]",
+        "[[Parameters]]",
+        "[[KeyValuePairs]]",
+        "[[PrimaryKeyName]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Repository",
+      "Name": "DapperRepositoryBase",
+      "Namespace": "Repository",
+      "Location": "\\Templates\\NewTemplates\\Repository\\DapperRepositoryBase.txt",
+      "OutputFilename": "DapperRepository.cs",
+      "RelativeOutputPath": "Repository",
+      "Language": "csharp",
+      "RunOnce": true,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "Project.Models",
+        "Project.Interfaces",
+        "Business.Common.Responses"
+      ],
+      "Symbols": [
+        "[[Imports]]",
+        "[[Namespace]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Repository",
+      "Name": "Repository",
+      "Namespace": "Data.Repository.Dapper",
+      "Location": "\\Templates\\NewTemplates\\Repository\\Repository.txt",
+      "OutputFilename": "{0}DapperRepository.cs",
+      "RelativeOutputPath": "Repository",
+      "Language": "csharp",
+      "RunOnce": false,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "Project.Models",
+        "Project.Interfaces",
+        "Business.Common.Responses"
+      ],
+      "Symbols": [
+        "[[Imports]]",
+        "[[Namespace]]",
+        "[[UpperModelName]]",
+        "[[LowerModelName]]",
+        "[[Schema]]",
+        "[[PrimaryKeyDataType]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Repository",
+      "Name": "RepositoryBaseInterface",
+      "Namespace": "Repository",
+      "Location": "\\Templates\\NewTemplates\\Repository\\RepositoryBaseInterface.txt",
+      "OutputFilename": "IRepository.cs",
+      "RelativeOutputPath": "Repository",
+      "Language": "csharp",
+      "RunOnce": true,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "Project.Models",
+        "Project.Interfaces",
+        "Business.Common.Responses"
+      ],
+      "Symbols": [
+        "[[Imports]]",
+        "[[Namespace]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Repository",
+      "Name": "RepositoryInterface",
+      "Namespace": "Repository",
+      "Location": "\\Templates\\NewTemplates\\Repository\\RepositoryInterface.txt",
+      "OutputFilename": "I{0}Repository.cs",
+      "RelativeOutputPath": "Repository",
+      "Language": "csharp",
+      "RunOnce": false,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "Project.Models",
+        "Project.Interfaces",
+        "Business.Common.Responses"
+      ],
+      "Symbols": [
+        "[[Imports]]",
+        "[[Namespace]]",
+        "[[UpperModelName]]",
+        "[[LowerModelName]]",
+        "[[PrimaryKeyDataType]]",
+        "[[LowerPrimaryKeyName]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Service",
+      "Name": "Service",
+      "Namespace": "Service",
+      "Location": "\\Templates\\NewTemplates\\Service\\Service.txt",
+      "OutputFilename": "{0}Service.cs",
+      "RelativeOutputPath": "Service",
+      "Language": "csharp",
+      "RunOnce": false,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "Project.Models",
+        "Project.Interfaces",
+        "Business.Common.Responses"
+      ],
+      "Symbols": [
+        "[[Imports]]",
+        "[[Namespace]]",
+        "[[UpperModelName]]",
+        "[[LowerModelName]]",
+        "[[PrimaryKeyDataType]]",
+        "[[LowerPrimaryKeyName]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "Service",
+      "Name": "ServiceInterface",
+      "Namespace": "Service",
+      "Location": "\\Templates\\NewTemplates\\Service\\ServiceInterface.txt",
+      "OutputFilename": "I{0}Service.cs",
+      "RelativeOutputPath": "Service",
+      "Language": "csharp",
+      "RunOnce": false,
+      "Imports": [
+        "System",
+        "System.Collections.Generic",
+        "Project.Models",
+        "Project.Interfaces",
+        "Business.Common.Responses"
+      ],
+      "Symbols": [
+        "[[Imports]]",
+        "[[Namespace]]",
+        "[[UpperModelName]]",
+        "[[PrimaryKeyDataType]]",
+        "[[LowerPrimaryKeyName]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "TableValuedFunction",
+      "Name": "SelectAll",
+      "Schema": "ProjectSchema",
+      "Namespace": "TableValuedFunction",
+      "Location": "\\Templates\\NewTemplates\\TableValuedFunction\\SelectAll.txt",
+      "OutputFilename": "{0}_SelectAll.sql",
+      "RelativeOutputPath": "TableValuedFunction",
+      "Language": "sql",
+      "RunOnce": false,
+      "Imports": [],
+      "Symbols": [
+        "[[Schema]]",
+        "[[TableName]]"
+      ],
+      "AuxilaryTemplates": []
+    },
+    {
+      "Type": "TableValuedFunction",
+      "Name": "SelectById",
+      "Namespace": "TableValuedFunction",
+      "Location": "\\Templates\\NewTemplates\\TableValuedFunction\\SelectById.txt",
+      "OutputFilename": "{0}_SelectById.sql",
+      "RelativeOutputPath": "TableValuedFunction",
+      "Language": "sql",
+      "RunOnce": false,
+      "Imports": [],
+      "Symbols": [
+        "[[Schema]]",
+        "[[TableName]]"
+      ],
+      "AuxilaryTemplates": []
+    }
+  ],
+  "Symbols": [
+    "[[Namespace]]",
+    "[[PropertyType]]",
+    "[[PropertyName]]",
+    "[[Schema]]",
+    "[[TableName]]",
+    "[[PrimaryKeyName]]",
+    "[[PrimaryKeyDataType]]",
+    "[[Parameters]]",
+    "[[Fields]]",
+    "[[Values]]",
+    "[[KeyValuePairs]]",
+    "[[Imports]]",
+    "[[UpperModelName]]",
+    "[[LowerModelName]]",
+    "[[LowerPrimaryKeyName]]"
+  ]
+}

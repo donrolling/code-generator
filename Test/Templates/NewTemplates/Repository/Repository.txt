@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using Business.Common.Logging;
+using Business.Common.Responses;
+
+using Dapper;
+using Data.Models.Entities;
+using Data.Repository.Dapper;
+using Data.Repository.Interfaces;
+
+namespace <s>@Model.Namespace</s> {
+	public class <s>@Model.Name</s>DapperRepository : DapperRepository, I<s>@Model.Name</s>Repository {	
+		
+
+		public <s>@Model.Name</s> SelectById(<s>@Model.KeyDataType</s> id) {
+			return new <s>@Model.Name</s>_SelectById_Function().CallFunction(this, id);
+		}
+
+		public IEnumerable<<s>@Model.Name</s>> ReadAll(long userId, bool readActive = true, bool readInactive = false) {
+			return new <s>@Model.Name</s>_ReadAll_Function().CallFunction(this, userId, readActive, readInactive);
+		}
+	}
+}

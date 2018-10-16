@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [@Model.Schema].[<s>@Model.Name</s>_Delete]
+	<s>@@</s>@Model.KeyNameLowerCamelCase @Model.KeyDataType
+AS
+	DELETE FROM [@Model.Schema].[@Model.Name]
+	WHERE [@Model.KeyName] = <s>@@</s><s>@Model.KeyNameLowerCamelCase</s>

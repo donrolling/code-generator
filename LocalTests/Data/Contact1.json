@@ -1,0 +1,69 @@
+{
+  "Name": "Contact",
+  "Properties": [
+    {
+      "Name": "Id",
+      "PrimaryKey": true,
+      "SqlDataType": 1,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 0
+    },
+    {
+      "Name": "FirstName",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    },
+    {
+      "Name": "LastName",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    },
+    {
+      "Name": "Address",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    },
+    {
+      "Name": "Address2",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    },
+    {
+      "Name": "City",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    },
+    {
+      "Name": "State",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    },
+    {
+      "Name": "Zip",
+      "PrimaryKey": false,
+      "SqlDataType": 14,
+      "Nullable": false,
+      "DefaultValue": null,
+      "Length": 50
+    }
+  ]
+}

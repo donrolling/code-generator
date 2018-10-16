@@ -1,0 +1,53 @@
+﻿using Common;
+using Common.Configuration;
+using Common.Responses;
+using Business.Service.BaseServices;
+using Business.Service.Interfaces;
+using Business.ServiceInterfaces;
+using Data.Models.Entities;
+using Data.Repository.Interfaces;
+using System;
+using System.Collections.Generic;
+
+namespace @Model.Namespace {
+	public class <s>@Model.Name.Value</s>Service : <s>@Model.Name.Value</s><s>BaseService, I<s>@Model.Name.Value</s>Service {</s>		
+		@if(Model.Keys.Count == 1) {
+		<s>public IEntityDapperRepository<<s>@Model.Name.Value</s>, long> EntityRepository { get { return this.<s>@Model.Name.Value</s>Repository; } }</s>
+		}
+
+		public <s>@Model.Name.Value</s>Service(IMembershipService membershipService, I<s>@Model.Name.Value</s>Repository <s>@Model.Name.LowerCamelCase</s>Repository, ILogger logger) : base(membershipService, <s>@Model.Name.LowerCamelCase</s>Repository, logger){ }
+		
+		@if(Model.Keys.Count == 1) {
+		<s>
+		public <s>@Model.Name.Value</s> GetEditViewModel() {
+			return new <s>@Model.Name.Value</s>();
+		}
+
+		public <s>@Model.Name.Value</s> GetEditViewModel(<s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>) {
+			return this.SelectById(<s>@Model.Name.LowerCamelCase</s>.Id);
+		}
+
+		public <s>@Model.Name.Value</s> GetEditViewModel(long id) {
+			return this.SelectById(id);
+		}
+
+		public DataSet GetList(PageInfo pageInfo) {            
+			var userId = this.MembershipService.CurrentUserId();
+			var result = this.ReadAll(pageInfo);
+			//todo: GetList - tweak this for proper column output
+			var data = new DataTable<<s>@Model.Name.Value</s>>(HttpContextFactory.Current, result.Collection, result.TotalRecords,
+							<s>@Model.Name.Value</s>_Properties.Id
+						);
+			return new DataSet(data);
+		}
+
+		public TransactionResponse Save(<s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>) {
+			if (<s>@Model.Name.LowerCamelCase</s>.Id == 0) {
+				return this.Create(<s>@Model.Name.LowerCamelCase</s>);
+			} else {
+				return this.Update(<s>@Model.Name.LowerCamelCase</s>);
+			}
+		}</s>
+		}
+	}
+}

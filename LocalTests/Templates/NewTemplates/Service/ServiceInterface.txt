@@ -1,0 +1,30 @@
+﻿using Common;
+using Common.Responses;
+using Common.Presentation;
+using Data.Repository.Interfaces;
+using Data.Models.Entities;
+using System;
+using System.Collections.Generic;
+
+namespace @Model.Namespace {
+	public interface I<s>@Model.Name.Value</s>Service {
+		@if(Model.Keys.Count > 1) {
+		<s>TransactionResponse Create(long monitorId, <s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>);</s>
+		}else{
+		<s>InsertResponse<s><@Model.Keys[0].DataType></s> Create(long monitorId, <s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>);</s>
+		}
+		@if(Model.Keys.Count > 1) {
+		<s>Task<TransactionResponse> CreateAsync(long monitorId, <s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>);</s>
+		}else{
+		<s>Task<InsertResponse<s><@Model.Keys[0].DataType></s>> CreateAsync(long monitorId, <s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>);</s>
+		}
+		TransactionResponse Update(long monitorId, <s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>);
+		Task<TransactionResponse> UpdateAsync(long monitorId, <s>@Model.Name.Value</s> <s>@Model.Name.LowerCamelCase</s>);
+		TransactionResponse Delete(long monitorId, <s>@Model.CSharpKeySignature</s>);
+		Task<TransactionResponse> DeleteAsync(long monitorId, <s>@Model.CSharpKeySignature</s>);
+		<s>@Model.Name.Value</s> SelectById(long monitorId, <s>@Model.CSharpKeySignature</s>);
+		Task<<s>@Model.Name.Value</s>> SelectByIdAsync(long monitorId, <s>@Model.CSharpKeySignature</s>);
+		IPresentable<<s>@Model.Name.Value</s>> ReadAll(long monitorId, PageInfo pageInfo);
+		Task<IPresentable<<s>@Model.Name.Value</s>>> ReadAllAsync(long monitorId, PageInfo pageInfo);
+	}
+}

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{805D0CE8-7903-4B7E-98EB-5E3CCDD473CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Data</RootNamespace>
+    <AssemblyName>Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\DataTransferObjects\AccountModels.cs" />
+    <Compile Include="Models\DataTransferObjects\AuthorizationResult.cs" />
+    <Compile Include="Models\Entities\DataType.cs" />
+    <Compile Include="Models\Entities\Entity.cs" />
+    <Compile Include="Models\Entities\Language.cs" />
+    <Compile Include="Models\Entities\Project.cs" />
+    <Compile Include="Models\Entities\ProjectAuditProperty.cs" />
+    <Compile Include="Models\Entities\ProjectTemplate.cs" />
+    <Compile Include="Models\Entities\Property.cs" />
+    <Compile Include="Models\Entities\PropertyRelationship.cs" />
+    <Compile Include="Models\Entities\Role.cs" />
+    <Compile Include="Models\Entities\Template.cs" />
+    <Compile Include="Models\Entities\TemplateImport.cs" />
+    <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\Entities\UserProjectRole.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ViewModels\ProjectDetailViewModel.cs" />
+    <Compile Include="Presentation\IPresentable.cs" />
+    <Compile Include="Presentation\PresentationList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ADO\StoredProcedureBase.cs" />
+    <Compile Include="Repository\Caching\CacheProvider.cs" />
+    <Compile Include="Repository\Caching\HttpCache.cs" />
+    <Compile Include="Repository\Caching\ICacheProvider.cs" />
+    <Compile Include="Repository\Dapper\BaseDataDefinition.cs" />
+    <Compile Include="Repository\Dapper\PropertyDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\PropertyRelationshipDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\DapperRepository.cs" />
+    <Compile Include="Repository\Dapper\RoleDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\TemplateDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\UserProjectRoleDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\LanguageDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\ProjectAuditPropertyDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\UserDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\DataTypeDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\EntityDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\ProjectDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\ProjectTemplateDapperRepository.cs" />
+    <Compile Include="Repository\Dapper\TemplateImportDapperRepository.cs" />
+    <Compile Include="Repository\FunctionDefinitions\DataType_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\DataType_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\DoesUserExist_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Entity_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Entity_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\GetUserByEmailAddress_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\IsInRole_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\IsUserSystemAdmin_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\LanguageDataTypeConversion_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\LanguageDataTypeConversion_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Language_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Language_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\ProjectAuditProperty_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\ProjectAuditProperty_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\ProjectTemplate_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\ProjectTemplate_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Project_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Project_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\PropertyRelationship_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\PropertyRelationship_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Property_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Property_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Role_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Role_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\TemplateImport_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\TemplateImport_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Template_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Template_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\UserProjectRole_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\UserProjectRole_SelectById_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\Users_ReadForList_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\User_ReadAll_Function.cs" />
+    <Compile Include="Repository\FunctionDefinitions\User_SelectById_Function.cs" />
+    <Compile Include="Repository\Interfaces\IDapperRepository.cs" />
+    <Compile Include="Repository\Interfaces\IDataTypeRepository.cs" />
+    <Compile Include="Repository\Interfaces\IEntityRepository.cs" />
+    <Compile Include="Repository\Interfaces\ILanguageRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectAuditPropertyRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectRepository.cs" />
+    <Compile Include="Repository\Interfaces\IProjectTemplateRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPropertyRelationshipRepository.cs" />
+    <Compile Include="Repository\Interfaces\IPropertyRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITemplateImportRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITemplateRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserProjectRoleRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\SQL_Helper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business.Common\Business.Common.csproj">
+      <Project>{700465bf-50ce-4c2e-ac92-d9aaf1e417f3}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

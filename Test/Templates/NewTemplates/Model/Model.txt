@@ -1,0 +1,17 @@
+﻿@foreach(var i in Model.Imports){
+<s>using @i;</s>
+}
+
+namespace @Model.Namespace {
+	public class @Model.Name {
+	@foreach(var p in Model.Properties){
+		if(!p.Nullable){
+		<s>[Required]</s>
+		if(p.DataType == "string"){
+		<s>[StringLength(@p.Length, ErrorMessage = "@p.NameWithSpaces cannot be longer than @p.Length characters.")]</s>
+		}
+		}
+		<s>public @p.DataType.ToString() @p.Name { get; set; }</s>
+	}
+	}
+}

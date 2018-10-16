@@ -1,0 +1,15 @@
+﻿CREATE PROCEDURE [@Model.Schema].[<s>@Model.Name</s>_Update]
+	@for(var i = 0;i < Model.Properties.Count(); i++){
+	<s>@@</s><s>@Model.Properties[i].NameLowerCamelCase</s> <s>@(Model.Properties[i].DataType == "NVarChar" ? Model.Properties[i].DataType + "(" + Model.Properties[i].Length + ")" : Model.Properties[i].DataType)</s>@(i < (Model.Properties.Count() - 1) ? ",\r\n" : "")
+	}
+
+AS
+	UPDATE [@Model.Schema].[<s>@Model.Name</s>]
+	SET	
+	@for(var i = 0;i < Model.Properties.Count(); i++){
+		if(!Model.Properties[i].PrimaryKey){
+		<s>[@Model.Properties[i].Name]</s><s> = </s><s>@@<s>@Model.Properties[i].NameLowerCamelCase</s></s>@(i < (Model.Properties.Count() - 1) ? ",\r\n" : "")
+		}
+	}
+
+	WHERE [@Model.KeyName] = <s>@@</s><s>@Model.KeyNameLowerCamelCase</s>

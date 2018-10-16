@@ -1,0 +1,102 @@
+﻿{
+	"Templates": {
+	"Template": [
+		{
+		"Type": "Procedure",
+		"Name": "Insert",
+		"Filename": "{0}_Insert.sql",
+		"Location": "Templates\\Procedure",
+		"RelativeOutputPath": "SQL\\Procedures",
+		"RunOnce": "false",
+		"Namespaces": []
+		},
+		{
+		"Type": "Procedure",
+		"Name": "Update",
+		"Filename": "{0}_Update.sql",
+		"Location": "Templates\\Procedure",
+		"RelativeOutputPath": "SQL\\Procedures",
+		"RunOnce": "false",
+		"Namespaces": []
+		},
+		{
+		"Type": "Procedure",
+		"Name": "Delete",
+		"Filename": "{0}_Delete.sql",
+		"Location": "Templates\\Procedure",
+		"RelativeOutputPath": "SQL\\Procedures",
+		"RunOnce": "false",
+		"Namespaces": []
+		},
+		{
+		"Type": "Model",
+		"Name": "Model",
+		"Filename": "{0}",
+		"Location": "Templates\\Model",
+		"RelativeOutputPath": "Data\\Models\\Entities",
+		"RunOnce": "false",
+		"Namespaces": [],
+		"AuxilaryTemplates": {
+			"AuxilaryTemplate": {
+			"Name": "Property",
+			"Location": "Templates\\Model"
+			}
+		}
+		},
+		{
+		"Type": "Repository",
+		"Name": "IRepository",
+		"Filename": "IRepository",
+		"Location": "Templates\\Repository",
+		"RelativeOutputPath": "Data\\Repository\\Interfaces",
+		"RunOnce": "true",
+		"Namespaces": []
+		},
+		{
+		"Type": "Repository",
+		"Name": "DapperRepository",
+		"Filename": "DapperRepository",
+		"Location": "Templates\\Repository",
+		"RelativeOutputPath": "Data\\Repository\\Dapper",
+		"RunOnce": "true",
+		"Namespaces": []
+		},
+		{
+		"Type": "Repository",
+		"Name": "Repository",
+		"Filename": "Dapper{0}Repository",
+		"Location": "Templates\\Repository",
+		"RelativeOutputPath": "Data\\Repository\\Dapper",
+		"RunOnce": "false",
+		"Namespaces": []
+		},
+		{
+		"Type": "Repository",
+		"Name": "RepositoryInterface",
+		"Filename": "I{0}Repository",
+		"Location": "Templates\\Repository",
+		"RelativeOutputPath": "Data\\Repository\\Interfaces",
+		"RunOnce": "false",
+		"Namespaces": []
+		},
+		{
+		"Type": "Service",
+		"Name": "Service",
+		"Filename": "{0}Service",
+		"Location": "Templates\\Service",
+		"RelativeOutputPath": "Business\\Services",
+		"RunOnce": "false",
+		"Namespaces": []
+		},
+		{
+		"Type": "Service",
+		"Name": "ServiceInterface",
+		"Filename": "I{0}Service",
+		"Location": "Templates\\Service",
+		"RelativeOutputPath": "Business\\Services\\Interfaces",
+		"RunOnce": "false",
+		"Namespaces": []
+		}
+	]
+	}
+}

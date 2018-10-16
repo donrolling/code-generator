@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[@Model.Name](
+	[@Model.KeyName] @Model.KeyDataType NOT NULL PRIMARY KEY
+	@foreach(var p in Model.Properties.Where(a => !a.PrimaryKey)){
+	<s>, [@p.Name] @(p.DataType == "NVarChar" ? p.DataType + "(" + p.Length + ")" : p.DataType) @(p.Nullable ? "Null" : "Not Null")</s>
+	}
+)

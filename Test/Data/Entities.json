@@ -1,0 +1,55 @@
+[
+  {
+    "Properties": [
+      {
+        "Name": "FirstName",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 50,
+        "DefaultValue": null
+      },
+      {
+        "Name": "LastName",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 50,
+        "DefaultValue": null
+      },
+      {
+        "Name": "Address",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 50,
+        "DefaultValue": null
+      },
+      {
+        "Name": "Address2",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 50,
+        "DefaultValue": null
+      },
+      {
+        "Name": "City",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 35,
+        "DefaultValue": null
+      },
+      {
+        "Name": "State",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 2,
+        "DefaultValue": null
+      },
+      {
+        "Name": "Zip",
+        "DataType": "NVarChar",
+        "Nullable": false,
+        "Length": 10,
+        "DefaultValue": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FA6DF5D-F135-49FD-870D-BF9D45EEECAA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\JsonTests.cs" />
+    <Compile Include="Tests\TemplateRenderingTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business.Common\Business.Common.csproj">
+      <Project>{700465bf-50ce-4c2e-ac92-d9aaf1e417f3}</Project>
+      <Name>Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{79611c50-3140-43f2-b06c-92fee39fc4a3}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{a0e70849-6e47-4d27-8c37-5a7c3f99e7be}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Output\Model\" />
+    <Folder Include="Output\Procedure\" />
+    <Folder Include="Output\Repository\" />
+    <Folder Include="Output\Service\" />
+    <Folder Include="Output\TableValuedFunction\" />
+    <Folder Include="Output\Table\" />
+    <Folder Include="Setup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configurations\BasicConfiguration.json" />
+    <Content Include="Configurations\WorkingGeneratedConfiguration.json" />
+    <Content Include="Configurations\GeneratedConfiguration.json" />
+    <Content Include="Data\Contact1.json" />
+    <Content Include="Data\Entities.json" />
+    <None Include="Data\ActivtyFeedStatus.json" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\NewTemplates\Model\Model.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\Delete.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\Insert.txt" />
+    <Content Include="Templates\NewTemplates\Procedure\Update.txt" />
+    <Content Include="Templates\NewTemplates\Repository\DapperRepositoryBase.txt" />
+    <Content Include="Templates\NewTemplates\Repository\ReadAllFunction.txt" />
+    <Content Include="Templates\NewTemplates\Repository\Repository.txt" />
+    <Content Include="Templates\NewTemplates\Repository\RepositoryBaseInterface.txt" />
+    <Content Include="Templates\NewTemplates\Repository\RepositoryInterface.txt" />
+    <Content Include="Templates\NewTemplates\Repository\SelectByIdFunction.txt" />
+    <Content Include="Templates\NewTemplates\Service\Service.txt" />
+    <Content Include="Templates\NewTemplates\Service\ServiceInterface.txt" />
+    <Content Include="Templates\NewTemplates\TableValuedFunction\SelectAll.txt" />
+    <Content Include="Templates\NewTemplates\TableValuedFunction\SelectById.txt" />
+    <Content Include="Templates\NewTemplates\Table\Table.txt" />
+    <Content Include="Templates\OldTemplates\Auxilary\Import.txt" />
+    <Content Include="Templates\OldTemplates\Model\Model.txt" />
+    <Content Include="Templates\OldTemplates\Auxilary\Property.txt" />
+    <Content Include="Templates\OldTemplates\Procedure\Delete.txt" />
+    <Content Include="Templates\OldTemplates\Procedure\Insert.txt" />
+    <Content Include="Templates\OldTemplates\Procedure\Update.txt" />
+    <Content Include="Templates\OldTemplates\Repository\DapperRepository.txt" />
+    <Content Include="Templates\OldTemplates\Repository\IRepository.txt" />
+    <Content Include="Templates\OldTemplates\Repository\Repository.txt" />
+    <Content Include="Templates\OldTemplates\Repository\RepositoryBaseInterface.txt" />
+    <Content Include="Templates\OldTemplates\Repository\RepositoryBase.txt" />
+    <Content Include="Templates\OldTemplates\Repository\RepositoryInterface.txt" />
+    <Content Include="Templates\OldTemplates\Service\Service.txt" />
+    <Content Include="Templates\OldTemplates\Service\ServiceInterface.txt" />
+    <Content Include="Templates\OldTemplates\TableValuedFunction\SelectById.txt" />
+    <Content Include="Templates\OldTemplates\TableValuedFunction\SelectAll.txt" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

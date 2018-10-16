@@ -1,0 +1,91 @@
+﻿using Common;
+using Common.Configuration;
+using Common.Statuses;
+using Business.ServiceInterfaces;
+using Business.Service.Interfaces;
+using Data.Models.Entities;
+using Data.Models.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ploeh.AutoFixture;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Tests.Common;
+using Tests.Setup;
+
+namespace @Model.Namespace {
+	[TestClass]
+	public class <s>@Model.Name.Value</s>IntegrationTests {
+		public IMembershipService MembershipService { get; private set; }
+		public I<s>@Model.Name.Value</s>Service <s>@Model.Name.Value</s>Service { get; private set; }
+
+		public <s>@Model.Name.Value</s>IntegrationTests() {
+			AppBootstrap.Bootstrap();
+			//this is here to automatically sign in a current user. 
+			//it also provides access to the membership service, which is frequently used in our integration tests
+			this.MembershipService = MembershipHelper.SetCurrentUserToAdminSendFrom();
+			this.<s>@Model.Name.Value</s>Service = DependencyResolver.Current.GetService<I<s>@Model.Name.Value</s>Service>();
+		}
+
+		[TestMethod]
+		public void CRUD_<s>@Model.Name.Value</s>_GivenValidValues_Succeeds() {
+			@if(Model.Keys.Count == 1){<s>
+			var fixture = new Fixture();
+			var <s>@Model.Name.LowerCamelCase</s> = fixture.Build<<s>@Model.Name.Value</s>>()
+				.Without(a => a.Id)
+				.Without(a => a.CreatedDate)
+				.Without(a => a.CreatedById)
+				.Without(a => a.UpdatedDate)
+				.Without(a => a.UpdatedById)
+				.Create();
+			Assert.IsNotNull(<s>@Model.Name.LowerCamelCase</s>);
+
+			//create object
+			var createResult = this.<s>@Model.Name.Value</s>Service.Create(<s>@Model.Name.LowerCamelCase</s>);
+			Assert.IsTrue(createResult.Success);
+
+			//select object by id to ensure that it was saved to db
+			var new<s>@Model.Name.Value</s> = this.<s>@Model.Name.Value</s>Service.SelectById(createResult.Id);
+			Assert.IsNotNull(new<s>@Model.Name.Value</s>);
+
+			//update object to ensure that it can be modified and saved to db
+			//repopulate data
+			var preUpdated<s>@Model.Name.Value</s> = fixture.Build<<s>@Model.Name.Value</s>>()
+				.Without(a => a.Id)
+				.Without(a => a.CreatedDate)
+				.Without(a => a.CreatedById)
+				.Without(a => a.UpdatedDate)
+				.Without(a => a.UpdatedById)
+				.Create();
+			//modifiy the id of the new object so that when it saves it will replace the values of the new item that we just made.
+			preUpdated<s>@Model.Name.Value</s>.Id = createResult.Id;
+			//update the item in the database
+			var updateResult = this.<s>@Model.Name.Value</s>Service.Update(preUpdated<s>@Model.Name.Value</s>);
+			Assert.IsTrue(updateResult.Success);
+
+			//verify that the data in the newly updated object is not the same as it was previously.
+			var postUpdated<s>@Model.Name.Value</s> = this.<s>@Model.Name.Value</s>Service.SelectById(createResult.Id);
+			Assert.IsNotNull(postUpdated<s>@Model.Name.Value</s>);
+			var allProperties = typeof(<s>@Model.Name.Value</s>).GetProperties();
+			//pick two properties and compare them. this should be a sufficiently representative test.
+			var prop3 = allProperties[2];
+			var prop4 = allProperties[3];
+			var originalValue3 = prop3.GetValue(<s>@Model.Name.LowerCamelCase</s>, null);
+			var updatedValue3 = prop3.GetValue(postUpdated<s>@Model.Name.Value</s>, null);
+			Assert.AreNotEqual(originalValue3, updatedValue3);
+			var originalValue4 = prop4.GetValue(<s>@Model.Name.LowerCamelCase</s>, null);
+			var updatedValue4 = prop4.GetValue(postUpdated<s>@Model.Name.Value</s>, null);
+			Assert.AreNotEqual(originalValue4, updatedValue4);
+
+			//delete the item in the database
+			var deleteResult = this.<s>@Model.Name.Value</s>Service.Delete(createResult.Id);
+			Assert.IsTrue(deleteResult.Success);
+
+			//verify that the item was deleted
+			var deleteConfirm<s>@Model.Name.Value</s> = this.<s>@Model.Name.Value</s>Service.SelectById(createResult.Id);
+			Assert.IsNull(deleteConfirm<s>@Model.Name.Value</s>);
+			</s>}
+		}
+	}
+}

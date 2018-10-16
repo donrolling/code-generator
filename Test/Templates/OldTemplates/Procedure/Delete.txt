@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [[[Schema]]].[[[TableName]]_Delete]
+	@[[PrimaryKeyName]] [[PrimaryKeyDataType]]
+AS
+	DELETE FROM [[[Schema]]].[[[TableName]]]
+	WHERE [[[PrimaryKeyName]]] = @[[PrimaryKeyName]]

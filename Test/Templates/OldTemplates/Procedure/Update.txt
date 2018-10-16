@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [[[Schema]]].[[[TableName]]_Update]
+[[Parameters]]
+AS
+	UPDATE [[[Schema]]].[[[TableName]]]
+	SET	
+[[KeyValuePairs]]
+	WHERE [[PrimaryKeyName]] = @[[PrimaryKeyName]]

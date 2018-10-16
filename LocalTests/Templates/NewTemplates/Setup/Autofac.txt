@@ -1,0 +1,33 @@
+﻿using Autofac;
+using Common;
+using Common.Configuration;
+using Business.ServiceInterfaces;
+using Business.Service.Interfaces;
+using Business.Services.Notification;
+using Data.Repository.Dapper;
+using Data.Repository.Interfaces;
+using Service;
+
+namespace @Model.Namespace {
+	public static class AutofacChildBootstrap {
+		public static void Bootstrap(ContainerBuilder builder, string connectionString, string childConnectionString, string databaseStorageDirectory, ApplicationMode appState, string smtpServer, string adminSendTo, string adminSendFrom, string emailPath, string websiteBaseUrl) {
+			@foreach(var p in Model.Properties){
+			<s>builder.RegisterType<<s>@p.Name.Value</s>DapperRepository>().As<I<s>@p.Name.Value</s>Repository>().InstancePerRequest().WithParameter("connectionString", connectionString);</s>
+			<s>builder.RegisterType<<s>@p.Name.Value</s>Service>().As<I<s>@p.Name.Value</s>Service>().InstancePerRequest();</s>
+			}
+									
+			//email stuff
+			builder.RegisterType<MessageService>().As<IMessageService>();
+			var emailIsTest = appState == ApplicationMode.Local ? true : false;
+			builder.RegisterType<EmailService>().As<IEmailService>()
+				.WithParameter("smtpServer", smtpServer)
+				.WithParameter("adminSendFrom", adminSendFrom)
+				.WithParameter("emailPath", emailPath)
+				.WithParameter("isTest", emailIsTest);
+
+			//logger
+			builder.RegisterType<Log4NetLogger>().As<ILogger>();
+			builder.RegisterType<RepositoryLogger>().As<IRepositoryLogger>();
+		}
+	}
+}

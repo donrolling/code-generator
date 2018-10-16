@@ -1,0 +1,11 @@
+﻿@foreach(var i in Model.Imports){
+<s>using @i;</s>
+}
+
+namespace @Model.Namespace {
+	public interface I<s>@Model.Name</s>Service {
+		TransactionResponse Create(<s>@Model.Name</s> model);
+		TransactionResponse Update(<s>@Model.Name</s> model);
+		TransactionResponse Delete(<s>@Model.KeyDataType</s> <s>@Model.KeyNameLowerCamelCase</s>);
+	}
+}

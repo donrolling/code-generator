@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [[[Schema]]].[[[TableName]]_Insert] ([[Parameters]]
+) AS
+	INSERT INTO [[[Schema]]].[[[TableName]]]
+	([[Fields]]
+	)
+	VALUES ([[Values]]
+	)
+	
+	set @[[PrimaryKeyName]] = Scope_Identity()

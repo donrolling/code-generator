@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Business.Common.DataTables;
+using Dapper;
+using Data.Models.Entities;
+using Data.Presentation;
+using Data.Repository.Dapper;
+using Data.Repository.Interfaces;
+
+namespace <s>@Model.Namespace</s> {
+	public class <s>@Model.Name</s>_ReadAll_Function : BaseDataDefinition {	
+		public const string DatabaseSchema = "@Model.Schema";
+		public const string UserDefinedFunctionName = "<s>@Model.Name</s>_ReadAll";
+		
+		public IEnumerable<<s>@Model.Name</s>_ReadAll_Result> CallFunction(IDapperRepository repository, bool readActive, bool readInactive) {
+			return CallFunction<<s>@Model.Name</s>_ReadAll_Result>(repository, readActive, readInactive);
+		}
+
+		public IEnumerable<T> CallFunction<T>(IDapperRepository repository, bool readActive, bool readInactive) where T : class {
+			var signature = <s>@Model.Name</s>_ReadAll_Parameters.Get_DataFunction_Signature();
+			var sql = this.GetTableValuedFunctionCallSQL(signature, DatabaseSchema, UserDefinedFunctionName);
+			var parameters = <s>@Model.Name</s>_ReadAll_Parameters.Get_DataFunction_DynamicParameters(readActive, readInactive);
+			return repository.Query<T>(sql, parameters);
+		}
+		
+		public IPresentable<<s>@Model.Name</s>_ReadAll_Result> CallFunction_Paged(IDapperRepository repository, PageInfo pageInfo, bool readActive, bool readInactive) {
+			var signature = <s>@Model.Name</s>_ReadAll_Parameters.Get_DataFunction_Signature();
+			var parameters = <s>@Model.Name</s>_ReadAll_Parameters.Get_DataFunction_DynamicParameters(readActive, readInactive);
+			return base.Paged<<s>@Model.Name</s>_ReadAll_Result>(repository, parameters, signature, DatabaseSchema, UserDefinedFunctionName, pageInfo);
+		}
+	}
+	
+	public static class <s>@Model.Name</s>_ReadAll_Parameters {
+		public const string ReadActive = "readActive";
+		public const string ReadInactive = "readInactive";		
+
+		public static string Get_DataFunction_Signature() {
+			return string.Concat("@@readActive, ", "@@readInactive");
+		}
+
+		public static DynamicParameters Get_DataFunction_DynamicParameters(bool readActive, bool readInactive) {
+			var parameters = new DynamicParameters();
+			parameters.Add(<s>@Model.Name</s>_ReadAll_Parameters.ReadActive, readActive);
+			parameters.Add(<s>@Model.Name</s>_ReadAll_Parameters.ReadInactive, readInactive);
+			return parameters;
+		}
+	}
+
+	public static class <s>@Model.Name</s>_ReadAll_Properties {
+		@foreach(var p in Model.Properties){
+		<s>public const string @p.Name = "@p.Name";</s>
+		}
+	}
+
+	public class <s>@Model.Name</s>_ReadAll_Result {
+		@foreach(var p in Model.Properties){
+		<s>public @p.DataType.ToString() @p.Name { get; set; }</s>
+		}
+	}
+}

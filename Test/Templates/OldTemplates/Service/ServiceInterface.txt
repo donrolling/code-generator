@@ -1,0 +1,9 @@
+﻿[[Imports]]
+
+namespace [[Namespace]] {
+	public interface I[[UpperModelName]]Service {
+		TransactionResponse Create([[UpperModelName]] model);
+		TransactionResponse Update([[UpperModelName]] model);
+		TransactionResponse Delete([[PrimaryKeyDataType]] [[LowerPrimaryKeyName]]);
+	}
+}

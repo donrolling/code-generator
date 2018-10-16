@@ -1,0 +1,33 @@
+﻿using System.Linq;
+using Dapper;
+using Data.Models.Entities;
+using Data.Repository.Dapper;
+using Data.Repository.Interfaces;
+
+namespace <s>@Model.Namespace</s> {
+	public class <s>@Model.Name</s>_SelectById_Function : BaseDataDefinition {	
+		public const string DatabaseSchema = "@Model.Schema";
+		public const string UserDefinedFunctionName = "<s>@Model.Name</s>_SelectById";
+		
+		public <s>@Model.Name</s> CallFunction(IDapperRepository repository, <s>@Model.KeyDataType</s> <s>@Model.KeyNameLowerCamelCase</s>) {
+			var signature = <s>@Model.Name</s>_SelectById_Parameters.Get_DataFunction_Signature();
+			var sql = this.GetTableValuedFunctionCallSQL(signature, DatabaseSchema, UserDefinedFunctionName);
+			var parameters = <s>@Model.Name</s>_SelectById_Parameters.Get_DataFunction_DynamicParameters(<s>@Model.KeyNameLowerCamelCase</s>);
+			return repository.Query<<s>@Model.Name</s>>(sql, parameters).FirstOrDefault();
+		}
+	}
+	
+	public static class <s>@Model.Name</s>_SelectById_Parameters {
+		public const string <s>@Model.KeyName</s> = "<s>@Model.KeyNameLowerCamelCase</s>";
+
+		public static string Get_DataFunction_Signature() {
+			return "@@<s>@Model.KeyNameLowerCamelCase</s>";
+		}
+
+		public static DynamicParameters Get_DataFunction_DynamicParameters(<s>@Model.KeyDataType</s> <s>@Model.KeyNameLowerCamelCase</s>) {
+			var parameters = new DynamicParameters();
+			parameters.Add(<s>@Model.Name</s>_SelectById_Parameters.<s>@Model.KeyName</s>, <s>@Model.KeyNameLowerCamelCase</s>);
+			return parameters;
+		}
+	}
+}

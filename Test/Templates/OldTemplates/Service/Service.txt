@@ -1,0 +1,26 @@
+﻿[[Imports]]
+
+namespace [[Namespace]] {
+	public class [[UpperModelName]]Service : I[[UpperModelName]]Service {		
+		public I[[UpperModelName]]Repository [[UpperModelName]]Repository { get; set; }
+
+		public [[UpperModelName]]Service(I[[UpperModelName]]Repository [[LowerModelName]]Repository) {
+			this.[[UpperModelName]]Repository = [[LowerModelName]]Repository;
+		}
+
+		public TransactionResponse Create([[UpperModelName]] [[LowerModelName]]){
+			var result = this.[[UpperModelName]]Repository.Create([[LowerModelName]]);
+			return result;
+		}
+
+		public TransactionResponse Update([[UpperModelName]] [[LowerModelName]]){
+			var result = this.[[UpperModelName]]Repository.Update([[LowerModelName]]);
+			return result;
+		}
+
+		public TransactionResponse Delete([[PrimaryKeyDataType]] [[LowerPrimaryKeyName]]){
+			var result = this.[[UpperModelName]]Repository.Delete([[LowerPrimaryKeyName]]);
+			return result;
+		}
+	}
+}

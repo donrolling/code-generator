@@ -1,0 +1,5 @@
+﻿DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Delete]
+DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Insert]
+DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Update]
+DROP Function [@Model.Schema].[<s>@Model.Name.Value</s>_ReadAll]
+DROP Function [@Model.Schema].[<s>@Model.Name.Value</s>_SelectById]

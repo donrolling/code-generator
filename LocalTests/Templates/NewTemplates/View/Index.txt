@@ -1,0 +1,45 @@
+﻿@@{
+	ViewBag.Title = "Monitor List";
+}
+
+@@section css{
+	<link href="~/Content/DataTables/css/dataTables.jqueryui.css" rel="stylesheet" />
+	<link href="~/Content/css/DataTables.css" rel="stylesheet" />
+}
+
+@@section scripts{
+	<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+	<script src="~/Scripts/Admin_DataTables.js"></script>
+	<script type="text/javascript">
+		var paging;
+		var tableId = "dyntable";
+		var dataSourceUrl = "/@Model.Name.Value/GetList";
+		var editUrl = "/@Model.Name.Value/Edit/";
+		var deleteUrl = "";
+		var filterNames = "Name";
+		var columns = null;
+		$(document).ready(function () {
+			paging = new DataTables.Index(tableId, dataSourceUrl, editUrl, deleteUrl, filterNames, true, columns, false);
+		});
+	</script>
+}
+
+@@section Heading{
+	@Model.Name.Value List
+}
+
+@@section Buttons{
+	<a class="button" href="@Model.Name.Value/Create">
+		<i class="fa fa-plus"></i> <span>Create @Model.Name.Value</span>
+	</a>
+}
+
+<table class="table table-normal" cellpadding="0" cellspacing="0" border="0" id="dyntable">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th style="width: 80px" class="editLinksHeader"></th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
