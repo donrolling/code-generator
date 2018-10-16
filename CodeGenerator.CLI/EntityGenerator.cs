@@ -45,10 +45,21 @@ namespace CodeGenerator.CLI {
 			var outputProviderService = new OutputProviderService();
 			var pathToTemplates = FileUtility.GetFullPath<EntityGenerator>("\\Templates");
 			outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), pathToTemplates, Config.OutputDirectory);
-			foreach (var script in Config.PostProcessScripts) {
-				var pathToScript = FileUtility.GetFullPath<EntityGenerator>($"\\Scripts\\{ script }");
-				Ronz.PowerShell.PowerShellUtils.RunScriptFile(pathToScript);
-			}
+			//var hasScriptErrors = false;
+			//var scriptErrors = string.Empty;
+			//foreach (var script in Config.PostProcessScripts) {
+			//	var pathToScript = FileUtility.GetFullPath<EntityGenerator>($"\\Scripts\\{ script }");
+			//	var scriptText = FileUtility.ReadTextFile(pathToScript);
+			//	try {
+			//		Ronz.PowerShell.PowerShellUtils.RunScript(scriptText);
+			//	} catch (Exception ex) {
+			//		hasScriptErrors = true;
+			//		scriptErrors += ex.Message;
+			//	}
+			//}
+			//if (hasScriptErrors) {
+			//	return Result.Error(scriptErrors);
+			//}
 			return Result.Ok();
 		}
 

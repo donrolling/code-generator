@@ -1,18 +1,18 @@
-$destinationPath = "C:\Projects\IdentityServer\Tools\IdentityCodeGenerator\Output"
+$destinationPath = "C:\Projects\IdentityServer\"
 
-$path = ".\Business\"
+$path = ".\Output\Business\"
 Copy-Item -Path $path -Destination $destinationPath -Recurse -Force
 
-$path = ".\Data\"
+$path = ".\Output\Data\"
 Copy-Item -Path $path -Destination $destinationPath -Recurse -Force
 
 $server = "971JT039H2\DROLLING"
-$database = "Indentity"
-$command = ".\runSQL.ps1"
-$path = ".\Database\Drop"
+$database = "Identity"
+$command = ".\Scripts\runSQL.ps1"
+$path = ".\Output\Database\Drop"
 Invoke-Expression "$command -server $server -database $database -path $path"
 
-$path = ".\Database\Functions"
+$path = ".\Output\Database\Functions"
 Invoke-Expression "$command -server $server -database $database -path $path"
 
 $path = '.\Database\Stored` Procedures'
