@@ -29,7 +29,7 @@ namespace Business.Services {
 			}
 			var cache_name = "CacheKey_" + templateName;
 			try {
-				var result = Engine.IsolatedRazor.RunCompile(template, cache_name, typeof(EntityViewModel), entity);
+				var result = Engine.Razor.RunCompile(template, cache_name, typeof(EntityViewModel), entity);
 				result = Regex.Replace(result, @"(\<s\>)|(\<\/s\>)", "");
 				return result;
 			} catch (Exception ex) {

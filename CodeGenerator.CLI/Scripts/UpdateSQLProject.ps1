@@ -1,21 +1,25 @@
+
+$json = (Get-Content 'config.json') -join "`n" | ConvertFrom-Json
+$outputDirectory = $json | Select -expand OutputDirectory
+
 $destinationPath = "C:\Projects\IdentityServer\"
 
-$path = ".\Output\Business\"
+$path = "$outputDirectory\Business\"
 Copy-Item -Path $path -Destination $destinationPath -Recurse -Force
 
-$path = ".\Output\Data\"
+$path = "$outputDirectory\Data\"
 Copy-Item -Path $path -Destination $destinationPath -Recurse -Force
 
 $server = "971JT039H2\DROLLING"
 $database = "Identity"
 $command = ".\Scripts\runSQL.ps1"
-$path = ".\Output\Database\Drop"
+$path = "$outputDirectory\Database\Drop"
 Invoke-Expression "$command -server $server -database $database -path $path"
 
-$path = ".\Output\Database\Functions"
+$path = "$outputDirectory\Database\Functions"
 Invoke-Expression "$command -server $server -database $database -path $path"
 
-$path = '.\Database\Stored` Procedures'
+$path = $outputDirectory + '\Database\Stored` Procedures'
 Invoke-Expression "$command -server $server -database $database -path $path"
 
 Read-Host -Prompt "Press Enter to exit"

@@ -1,7 +1,7 @@
 {
 	"ConnectionString": "Data Source=971JT039H2\\DROLLING;Initial Catalog=Identity;Integrated Security=SSPI;",
 	"ProcessTemplateStubs": true,
-	"OutputDirectory": "Output",
+	"OutputDirectory": "C:\\Projects\\code-generator\\CodeGenerator.CLI\\bin\\Output",
 	"IncludeTheseTablesOnly": [],
 	"IncludeTheseTemplatesOnly": [],
 	"ExcludeTheseTables": [],

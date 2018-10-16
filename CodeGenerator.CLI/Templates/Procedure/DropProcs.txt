@@ -1,5 +1,30 @@
-﻿DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Delete]
-DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Insert]
-DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Update]
-DROP Function [@Model.Schema].[<s>@Model.Name.Value</s>_ReadAll]
-DROP Function [@Model.Schema].[<s>@Model.Name.Value</s>_SelectById]
+﻿BEGIN TRY  
+	DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Delete]
+END TRY  
+BEGIN CATCH  
+
+END CATCH;
+BEGIN TRY  
+	DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Insert]
+END TRY  
+BEGIN CATCH  
+
+END CATCH;
+BEGIN TRY  
+	DROP PROCEDURE [@Model.Schema].[<s>@Model.Name.Value</s>_Update]
+END TRY  
+BEGIN CATCH  
+
+END CATCH;
+BEGIN TRY  
+	DROP Function [@Model.Schema].[<s>@Model.Name.Value</s>_ReadAll]
+END TRY  
+BEGIN CATCH  
+
+END CATCH;
+BEGIN TRY  
+	DROP Function [@Model.Schema].[<s>@Model.Name.Value</s>_SelectById]
+END TRY  
+BEGIN CATCH  
+
+END CATCH;
