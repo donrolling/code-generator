@@ -46,7 +46,8 @@ namespace CodeGenerator.CLI {
 			var pathToTemplates = FileUtility.GetFullPath<EntityGenerator>("\\Templates");
 			outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), pathToTemplates, Config.OutputDirectory);
 			foreach (var script in Config.PostProcessScripts) {
-				Ronz.PowerShell.PowerShellUtils.RunScriptFile($"Scripts\\{ script }");
+				var pathToScript = FileUtility.GetFullPath<EntityGenerator>($"\\Scripts\\{ script }");
+				Ronz.PowerShell.PowerShellUtils.RunScriptFile(pathToScript);
 			}
 			return Result.Ok();
 		}
