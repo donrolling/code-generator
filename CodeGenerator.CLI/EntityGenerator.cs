@@ -43,7 +43,8 @@ namespace CodeGenerator.CLI {
 			}
 
 			var outputProviderService = new OutputProviderService();
-			outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), "\\Templates", Config.OutputDirectory);
+			var pathToTemplates = FileUtility.GetFullPath<EntityGenerator>("\\Templates");
+			outputProviderService.OutputToFiles(entities, Config.Templates, selectedTemplates.Select(a => a.Name).ToList(), pathToTemplates, Config.OutputDirectory);
 			foreach (var script in Config.PostProcessScripts) {
 				Ronz.PowerShell.PowerShellUtils.RunScriptFile($"Scripts\\{ script }");
 			}
@@ -60,61 +61,6 @@ namespace CodeGenerator.CLI {
 			}
 			return Envelope<List<EntityViewModel>>.Ok(entities);
 		}
-
-		public void GenerateEntitiesAndOutputSQLInserts(string connectionString, string outputFilename, int projectId) {
-			if (!outputFilename.Contains(".sql")) {
-				outputFilename = outputFilename + ".sql";
-			}
-			var entitiesGenerationResult = GenerateEntities(connectionString);
-			if (entitiesGenerationResult.Failure) {
-				return;
-			}
-			var entities = entitiesGenerationResult.Result;
-			var sb = new StringBuilder();
-			sb.AppendLine("declare @entityId bigint = 0");
-
-			foreach (var entity in entities) {
-				var entitySql = $"INSERT INTO [dbo].[Entity] ([ProjectId],[Name]) VALUES({ projectId }, '{ entity.Name }')";
-				sb.AppendLine(entitySql);
-				sb.AppendLine("set @entityId = SCOPE_IDENTITY()");
-				foreach (var property in entity.Properties) {
-					var isPrimaryKey = property.PrimaryKey ? "1" : "0";
-					var isNullable = property.Nullable ? "1" : "0";
-					var dataType = property.SqlDataType.ToString("D");
-					var propertySql = $"Insert Into Property (EntityId, Name, IsPrimaryKey, DataTypeId, IsNullable, Length) values (@entityId, '{ property.Name }', { isPrimaryKey }, (select top 1 Id from DataType where DotNetEnumValue = { dataType }), { isNullable }, { property.Length })";
-					sb.AppendLine(propertySql);
-				}
-				sb.AppendLine();
-				sb.AppendLine("--****************************************************");
-				sb.AppendLine();
-			}
-
-			FileUtility.WriteFile<EntityGenerator>(outputFilename, "", sb.ToString());
-		}
-
-		//public void GenerateEntitiesAndSaveToFile(string connectionString, string outputFilename) {
-		//	if (!outputFilename.Contains(".zip")) {
-		//		outputFilename = outputFilename + ".zip";
-		//	}
-		//	var entitiesGenerationResult = GenerateEntities(connectionString);
-		//	if (entitiesGenerationResult.Failure) {
-		//		return;
-		//	}
-		//	var entities = entitiesGenerationResult.Result;
-		//	var outputProviderService = new OutputProviderService();
-		//	outputProviderService.OutputEntitiesToFile(entities, outputFilename);
-		//}
-
-		//public void GenerateOutput(List<EntityViewModel> entities, TemplateConfiguration templateConfiguration, string templateLocation, string outputFilename) {
-		//	if (!outputFilename.Contains(".zip")) {
-		//		outputFilename = outputFilename + ".zip";
-		//	}
-
-		//	var selectedTemplates = templateConfiguration.Templates.Select(a => a.Name).ToList();
-		//	var outputLocation = FileUtility.GetFullPath<EntityGenerator>("Output");
-		//	var outputProviderService = new OutputProviderService();
-		//	outputProviderService.OutputToFile(entities, templateConfiguration.Templates, selectedTemplates, templateLocation, outputLocation + outputFilename);
-		//}
 
 		private List<EntityViewModel> filterEntities(List<EntityViewModel> entities) {
 			if (Config.IncludeTheseTablesOnly.Any()) {

@@ -33,11 +33,15 @@ namespace Business.Services {
 		//}
 
 		public void OutputToFiles(List<EntityViewModel> entities, List<Template> templates, List<string> selectedTemplates, string pathToTemplates, string outputPath) {
-			cleanDir(new DirectoryInfo(outputPath));
+			var folder = new DirectoryInfo(outputPath);
+			if (!folder.Exists) {
+				Directory.CreateDirectory(outputPath);
+			}
+			cleanDir(folder);
 			var dict = new Dictionary<string, string>();
 			var runOnceTemplates = new List<string>();
 			traverseTemplatesAndEntities(dict, runOnceTemplates, entities, templates, selectedTemplates, pathToTemplates);
-			write(dict, outputPath);
+			write(dict, folder.FullName);
 		}
 
 		private void cleanDir(DirectoryInfo folder) {
@@ -49,13 +53,6 @@ namespace Business.Services {
 			}
 			foreach (var subFolder in folder.GetDirectories()) {
 				cleanDir(subFolder);
-			}
-			if (ignoredFiles == null || !ignoredFiles.Any()) {
-				try {
-					folder.Delete(true);
-				} catch (System.Exception) {
-
-				}
 			}
 		}
 
@@ -126,7 +123,8 @@ namespace Business.Services {
 
 		private void write(Dictionary<string, string> dict, string outputPath) {
 			foreach (var item in dict) {
-				FileUtility.WriteFile<OutputProviderService>(item.Key, outputPath, item.Value);
+				var path = $"{ outputPath }\\{ item.Key }";
+				FileUtility.WriteFile(path, item.Value);
 			}
 		}		
 		

@@ -22,11 +22,19 @@ namespace Business.Common {
 			return File.ReadAllText(path);
 		}
 
+		public static void WriteFile(string path, string contents) {
+			if (!Directory.Exists(path)) {
+				var dirName = Path.GetDirectoryName(path);
+				Directory.CreateDirectory(dirName);
+			}
+			File.WriteAllText(path, contents);
+		}
+
 		public static void WriteFile<T>(string filename, string subDirectory, string contents) where T : class {
 			var path = GetFullPath_FromRelativePath<T>(filename, subDirectory);
 			if (!Directory.Exists(path)) {
 				var dirName = Path.GetDirectoryName(path);
-                Directory.CreateDirectory(dirName);
+				Directory.CreateDirectory(dirName);
 			}
 			File.WriteAllText(path, contents);
 		}

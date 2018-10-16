@@ -14,7 +14,7 @@ namespace CodeGenerator.CLI {
 			var config = readConfig();
 			if (config == null) {
 				Console.WriteLine("Config was null. Sorry and goodbye.");
-				Thread.Sleep(3000);
+				Console.ReadLine();
 			} else {
 				try {
 					Console.WriteLine("Generating files. This may take a moment. Please wait for a response.");
@@ -23,14 +23,14 @@ namespace CodeGenerator.CLI {
 					if (result.Failure) {
 						Console.WriteLine($"There was an error: { result.Message }");
 						Console.WriteLine("Goodbye");
-						Thread.Sleep(3000);
+						Console.ReadLine();
 					}
 					Console.WriteLine("Goodbye");
-					Thread.Sleep(3000);
+					Console.ReadLine();
 				} catch (Exception ex) {
 					Console.WriteLine($"There was an error: { ex.Message }");
 					Console.WriteLine("Goodbye");
-					Thread.Sleep(3000);
+					Console.ReadLine();
 				}
 			}
 		}
