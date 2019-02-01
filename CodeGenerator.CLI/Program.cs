@@ -30,7 +30,6 @@ namespace CodeGenerator.CLI {
 					Console.WriteLine("Goodbye");
 				}
 			}
-			Thread.Sleep(10000);
 		}
 
 		private static TemplateConfiguration readConfig() {
