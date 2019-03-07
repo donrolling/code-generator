@@ -10,6 +10,7 @@ I'd like to upgrade this tool to .net core and make it faster. The number of fil
 
 
 Powershell Requirements
+
 	Install-Module -Name SqlServer
 
 	
